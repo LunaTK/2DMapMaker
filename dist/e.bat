@@ -1,0 +1,1 @@
+javaw -jar MapMaker.jar
