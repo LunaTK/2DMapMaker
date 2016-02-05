@@ -13,13 +13,14 @@ import org.json.simple.JSONObject;
  * @author LunaTK
  */
 public class Tile implements Comparable<Tile> {
-    private final int x,y,xSize,ySize;
+    private final int x,y,xSize,ySize, type;
 
-    public Tile(int x, int y, int xSize, int ySize) {
+    public Tile(int x, int y, int xSize, int ySize, int type) {
         this.x = x;
         this.y = y;
         this.xSize = xSize;
         this.ySize = ySize;
+        this.type = type;
     }
     
     public Tile(Object o){
@@ -28,6 +29,11 @@ public class Tile implements Comparable<Tile> {
         y = Integer.parseInt(jo.get("y").toString());
         xSize = Integer.parseInt(jo.get("xSize").toString());
         ySize = Integer.parseInt(jo.get("ySize").toString());
+        type = Integer.parseInt(jo.get("type").toString());
+    }
+
+    public int getType() {
+        return type;
     }
 
 

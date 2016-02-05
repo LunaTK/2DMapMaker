@@ -5,6 +5,8 @@
  */
 package mapmaker2.map;
 
+import org.json.simple.JSONObject;
+
 /**
  *
  * @author LunaTK
@@ -18,6 +20,19 @@ class Path {
         this.startY = startY;
         this.endX = endX;
         this.endY = endY;
+    }
+    
+    public Path(Object o){
+        JSONObject jo = (JSONObject)o;
+        startX = Integer.parseInt(jo.get("startX").toString());
+        startY = Integer.parseInt(jo.get("startY").toString());
+        endX = Integer.parseInt(jo.get("endX").toString());
+        endY = Integer.parseInt(jo.get("endY").toString());
+    }
+    
+    @Override
+    public String toString() {
+        return "startX : " + startX + " startY : " + startY + " endX : " + endX + " endY : " + endY;
     }
     
     public float getStartX() {

@@ -20,6 +20,7 @@ public class MapMaker2 {
         // TODO code application logic here
         Display display = new Display();
         
+        
     }
     
 }

@@ -12,6 +12,7 @@ import mapmaker2.display.listener.MouseClickListener;
 import mapmaker2.display.listener.MouseDragListener;
 import mapmaker2.imageloader.ImageLoader;
 import mapmaker2.json.JSONHandler;
+import mapmaker2.map.Map;
 import org.json.simple.*;
 
 /**
@@ -25,6 +26,7 @@ public class PaperHandler extends CanvasHandler {
     private boolean blocked;
     private static BufferedImage blockImg;
     private JSONObject jobj;
+    private Map map;
 
     public PaperHandler(Canvas canvas) {
         super(canvas, 21);
@@ -37,6 +39,9 @@ public class PaperHandler extends CanvasHandler {
 
     @Override
     public void render() {
+        if(map!=null){
+            content = map.getTileImg();
+        }
         g.clearRect(0, 0, width, height);
         g.drawImage(content, movX, movY, null);
         if(blocked){
@@ -149,6 +154,7 @@ public class PaperHandler extends CanvasHandler {
     public void construct(){
         content.getGraphics().fillRect(0, 0, width, height);
         if(jobj!=null){
+            /*
             JSONArray jarr = (JSONArray) jobj.get("Tile");
             for(Object o : jarr){
                 JSONObject jo = (JSONObject)o;
@@ -157,6 +163,8 @@ public class PaperHandler extends CanvasHandler {
                         Integer.parseInt(jo.get("x").toString()),Integer.parseInt(jo.get("y").toString()),
                         Integer.parseInt(jo.get("xSize").toString()),Integer.parseInt(jo.get("ySize").toString()),true);
             }
+            */
+            map = new Map(jobj);
             render();
         } else {
             System.err.println("Null Map Construction!");
